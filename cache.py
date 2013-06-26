@@ -2,9 +2,17 @@ import re
 import os
 import logging
 import atexit
-import cPickle as pickle
+try:
+    import cPickle as pickle
+except ImportError:
+    import pickle as pickle
 
 log = logging.getLogger('urlCache')
+
+try:
+    from six.moves import xrange
+except ImportError:
+    pass
 
 
 # contains a list of {'class'..,'check'..,'noDefault'} where class is the cacheclass and check is a function
@@ -140,7 +148,9 @@ class FileCache(BaseCache):
 
     def write(self, section, data):
         file = self.get_path(section, True)
-        open(file, 'w').writelines(data.encode('utf-8'))
+        if not isinstance(data, str):
+            data = data.encode('utf-8')
+        open(file, 'w').write(data)
 
 
 # below this i define several database caches - so they don't support append_stream and so on.. i won't store so big data inside

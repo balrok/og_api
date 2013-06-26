@@ -18,7 +18,7 @@ from prettytable import PrettyTable
 
 
 
-logger = logging.getLogger('urlCache')
+logger = logging.getLogger(__name__)
 
 
 
@@ -48,7 +48,7 @@ class Api(object):
         api_data = self.cache.lookup(self.server+"_"+type+append)
         need_download = False
         if not api_data:
-            logger.info("Need download because %s is not cached")
+            logger.info("Need download because %s is not cached" % self.server+"_"+type)
             need_download = True
         else:
             try:
@@ -58,7 +58,7 @@ class Api(object):
                 timestamp = os.path.getmtime(self.cache.get_path(self.server+"_"+type+append))
             timestamp = datetime.fromtimestamp(timestamp)
             if timestamp + type_to_update_intervall[type] < datetime.now():
-                logger.info("Need download because %s is more than 12h old" % (self.server+"_"+type))
+                logger.info("Need download because %s is too old" % (self.server+"_"+type))
                 need_download = True
         if need_download:
             r = self.requests.get('http://'+self.server+'/api/'+type+'.xml'+append)
