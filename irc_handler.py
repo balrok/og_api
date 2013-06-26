@@ -56,7 +56,6 @@ def realy_handle_command(command, connection=False, target=False):
         retStr.append(u"!awhich same as which, but a bit more detailed")
         retStr.append(u"!diff playername [hours] - highscore diff")
         retStr.append(u"!inactive yourpos [radius] [duration] [minscore] [maxscore] [maxdefperplanet]- finds inactive")
-        retStr.append(u"!dinactive yourpos [radius] [duration] [maxdefperplanet] - finds inactive")
 
     elif command == "help which":
         retStr.append(u"Beispielaufruf: !which 18 15 12 für met=18,kris=15 und deut=12 - plasmatech=0 und maximale temperatur=50 da nicht angegeben, kurs=2:1:1")
@@ -123,7 +122,7 @@ def realy_handle_command(command, connection=False, target=False):
                 break
             retStr.append(str(line).replace("\n", "")[:406]+" ...")
 
-    elif command.startswith("inactive") or command.startswith("ainactive") or command.startswith("dinactive"):
+    elif command.startswith("inactive") or command.startswith("ainactive"):
         args = command[9:].split(" ")
         import db
         amount = 6
@@ -151,12 +150,7 @@ def realy_handle_command(command, connection=False, target=False):
                 maxScore = int(args[4])
             if len(args) > 5:
                 maxDef = int(args[5])
-        
-         if command.startswith("dinactive"):
-            maxDef= minScore
-            retStr = "".join(db.listInactivityPlayer(position, radius, duration, 5000, 999999, amount, maxDef)).split("\n")
-         else:
-            retStr = "".join(db.listInactivityPlayer(position, radius, duration, minScore, maxScore, amount, maxDef)).split("\n")
+        retStr = "".join(db.listInactivityPlayer(position, radius, duration, minScore, maxScore, amount, maxDef)).split("\n")
 
     elif command.startswith("diff"):
         args = command[5:].split(" ")
