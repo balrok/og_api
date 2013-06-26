@@ -134,10 +134,10 @@ class TestBot(irc.bot.SingleServerIRCBot):
         reload(irc_handler)
         irc_handler.handle_command(self.connection, e, cmd)
 
-        if cmd == "disconnect":
-            self.disconnect()
-        elif cmd == "die":
-            self.die()
+        #if cmd == "disconnect":
+        #    self.disconnect()
+        #elif cmd == "die":
+        #    self.die()
         #elif cmd == "stats":
         #    for chname, chobj in self.channels.items():
         #        c.notice(nick, "--- Channel statistics ---")
