@@ -1,8 +1,8 @@
 #!/usr/bin/python
 
 import requests
-from cache import FileCache
-from helper import textextract
+from src.cache import FileCache
+from src.helper import textextract
 from datetime import datetime, timedelta
 import logging
 import os

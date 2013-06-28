@@ -1,6 +1,8 @@
 # coding=utf-8
 import re
 import api
+from src.lang import buildLabels
+from src.Constants import buildingTopList, PLASMATECHNOLOGY
 # TODO get server from commandline
 server = "uni117.ogame.de"
 api = api.Api(server, "var", quick=True)
@@ -80,13 +82,11 @@ def realy_handle_command(command, connection=False, target=False):
             mse = []
             for i in args[6].split(":"):
                 mse.append(float(i))
-        import Constants
-        Constants.loadLanguage("de")
         if command.startswith("which "):
-            bId = Constants.buildingTopList(buildings, {122:plasma}, temp, mse)[0]["bId"]
-            retStr.append("Am besten baust du: %s" % Constants.buildLabels[bId])
+            bId = buildingTopList(buildings, {PLASMATECHNOLOGY:plasma}, temp, mse)[0]["bId"]
+            retStr.append("Am besten baust du: %s" % buildLabels[bId])
         else:
-            t = Constants.buildingTopList(buildings, {122:plasma}, temp, mse)
+            t = buildingTopList(buildings, {PLASMATECHNOLOGY:plasma}, temp, mse)
             i = 0
             for build in t:
                 i+=1
@@ -94,7 +94,7 @@ def realy_handle_command(command, connection=False, target=False):
                 atime = build["atime"]
                 import datetime
                 atime = str(datetime.timedelta(seconds=atime))
-                retStr.append("%d: %s %s" % (i, Constants.buildLabels[bId], atime))
+                retStr.append("%d: %s %s" % (i, buildLabels[bId], atime))
 
     elif command == "dbupdate":
         import db

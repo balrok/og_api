@@ -1,4 +1,8 @@
 # coding=utf-8
+""" In Constants only numbers and formulas should be used
+    this will guarantee, that it works across languages
+"""
+
 from __future__ import division
 from math import floor,ceil,e
 
@@ -69,140 +73,73 @@ LARGESHIELDDOME              = 408
 ANTIBALLISTICMISSILE         = 502
 INTERPLANETARYMISSILE        = 503
 
-buildLabels = {}
-buildLabelsName = dict(zip(buildLabels.values(),buildLabels.keys()))
+# TODO create a python 3.4 Enum version which is backwardscompatible
+class BuildIds(object):
+    METALMINE                    = METALMINE
+    CRYSTALMINE                  = CRYSTALMINE
+    DEUTERIUMSYNTHESIZER         = DEUTERIUMSYNTHESIZER
+    SOLARPLANT                   = SOLARPLANT
+    FUSIONREACTOR                = FUSIONREACTOR
+    ROBOTICSFACTORY              = ROBOTICSFACTORY
+    NANITEFACTORY                = NANITEFACTORY
+    SHIPYARD                     = SHIPYARD
+    METALSTORAGE                 = METALSTORAGE
+    CRYSTALSTORAGE               = CRYSTALSTORAGE
+    DEUTERIUMTANK                = DEUTERIUMTANK
+    METALHIDING                  = METALHIDING
+    CRYSTALHIDING                = CRYSTALHIDING
+    DEUTERIUMHIDING              = DEUTERIUMHIDING
+    RESEARCHLAB                  = RESEARCHLAB
+    TERRAFORMER                  = TERRAFORMER
+    ALLIANCEDEPOT                = ALLIANCEDEPOT
+    LUNARBASE                    = LUNARBASE
+    SENSORPHALANX                = SENSORPHALANX
+    JUMPGATE                     = JUMPGATE
+    MISSILESILO                  = MISSILESILO
+    ESPIONAGETECHNOLOGY          = ESPIONAGETECHNOLOGY
+    COMPUTERTECHNOLOGY           = COMPUTERTECHNOLOGY
+    WEAPONSTECHNOLOGY            = WEAPONSTECHNOLOGY
+    SHIELDINGTECHNOLOGY          = SHIELDINGTECHNOLOGY
+    ARMOURTECHNOLOGY             = ARMOURTECHNOLOGY
+    ENERGYTECHNOLOGY             = ENERGYTECHNOLOGY
+    HYPERSPACETECHNOLOGY         = HYPERSPACETECHNOLOGY
+    COMBUSTIONDRIVE              = COMBUSTIONDRIVE
+    IMPULSEDRIVE                 = IMPULSEDRIVE
+    HYPERSPACEDRIVE              = HYPERSPACEDRIVE
+    LASERTECHNOLOGY              = LASERTECHNOLOGY
+    IONTECHNOLOGY                = IONTECHNOLOGY
+    PLASMATECHNOLOGY             = PLASMATECHNOLOGY
+    INTERGALACTICRESEARCHNETWORK = INTERGALACTICRESEARCHNETWORK
+    ASTROPHYSICS                 = ASTROPHYSICS
+    GRAVITONTECHNOLOGY           = GRAVITONTECHNOLOGY
+    SMALLCARGO                   = SMALLCARGO
+    LARGECARGO                   = LARGECARGO
+    LIGHTFIGHTER                 = LIGHTFIGHTER
+    HEAVYFIGHTER                 = HEAVYFIGHTER
+    CRUISER                      = CRUISER
+    BATTLESHIP                   = BATTLESHIP
+    COLONYSHIP                   = COLONYSHIP
+    RECYCLER                     = RECYCLER
+    ESPIONAGEPROBE               = ESPIONAGEPROBE
+    BOMBER                       = BOMBER
+    SOLARSATELLITE               = SOLARSATELLITE
+    DESTROYER                    = DESTROYER
+    DEATHSTAR                    = DEATHSTAR
+    BATTLECRUISER                = BATTLECRUISER
+    ROCKETLAUNCHER               = ROCKETLAUNCHER
+    LIGHTLASER                   = LIGHTLASER
+    HEAVYLASER                   = HEAVYLASER
+    GAUSSCANNON                  = GAUSSCANNON
+    IONCANNON                    = IONCANNON
+    PLASMATURRET                 = PLASMATURRET
+    SMALLSHIELDDOME              = SMALLSHIELDDOME
+    LARGESHIELDDOME              = LARGESHIELDDOME
+    ANTIBALLISTICMISSILE         = ANTIBALLISTICMISSILE
+    INTERPLANETARYMISSILE        = INTERPLANETARYMISSILE
 
-def loadLanguage(lang="de"):
-    global buildLabels
-    global buildLabelsName
-    if lang == "de":
-        buildLabels = {
-                METALMINE  : u'Metallmine',
-                CRYSTALMINE  : u'Kristallmine',
-                DEUTERIUMSYNTHESIZER  : u'Deuterium-Synthetisierer',
-                SOLARPLANT  : u'Solarkraftwerk',
-                FUSIONREACTOR : u'Fusionskraftwerk',
-                ROBOTICSFACTORY : u'Roboterfabrik',
-                NANITEFACTORY : u'Nanitenfabrik',
-                SHIPYARD : u'Raumschiffswerft',
-                METALSTORAGE : u'Metallspeicher',
-                CRYSTALSTORAGE : u'Kristallspeicher',
-                DEUTERIUMTANK : u'Deuteriumtank',
-                METALHIDING : u'Abgeschirmtes Metallversteck',
-                CRYSTALHIDING : u'Unterirdisches Kristallversteck',
-                DEUTERIUMHIDING : u'Meeresgrund Deuteriumversteck',
-                RESEARCHLAB : u'Forschungslabor',
-                TERRAFORMER : u'Terraformer',
-                ALLIANCEDEPOT : u'Allianzdepot',
-                MISSILESILO : u'Raketensilo',
-                # research
-                ESPIONAGETECHNOLOGY: u'Spionagetechnik',
-                COMPUTERTECHNOLOGY: u'Computertechnik',
-                WEAPONSTECHNOLOGY: u'Waffentechnik',
-                SHIELDINGTECHNOLOGY: u'Schildtechnik',
-                ARMOURTECHNOLOGY: u'Raumschiffpanzerung',
-                ENERGYTECHNOLOGY: u'Energietechnik',
-                HYPERSPACETECHNOLOGY: u'Hyperraumtechnik',
-                COMBUSTIONDRIVE: u'Verbrennungstriebwerk',
-                IMPULSEDRIVE: u'Impulstriebwerk',
-                HYPERSPACEDRIVE: u'Hyperraumantrieb',
-                LASERTECHNOLOGY: u'Lasertechnik',
-                IONTECHNOLOGY: u'Ionentechnik',
-                PLASMATECHNOLOGY: u'Plasmatechnik',
-                INTERGALACTICRESEARCHNETWORK: u'Intergalaktisches Forschungsnetzwerk',
-                ASTROPHYSICS: u'Astrophysik',
-                GRAVITONTECHNOLOGY: u'Gravitonforschung',
-                # shipyard
-                SMALLCARGO: u'Kleiner Transporter',
-                LARGECARGO: u'Großer Transporter',
-                LIGHTFIGHTER: u'Leichter Jäger',
-                HEAVYFIGHTER: u'Schwerer Jäger',
-                CRUISER: u'Kreuzer',
-                BATTLESHIP: u'Schlachtschiff',
-                COLONYSHIP: u'Kolonieschiff',
-                RECYCLER: u'Recycler',
-                ESPIONAGEPROBE: u'Spionagesonde',
-                BOMBER: u'Bomber',
-                SOLARSATELLITE: u'Solarsatellit',
-                DESTROYER: u'Zerstörer',
-                DEATHSTAR: u'Todesstern',
-                BATTLECRUISER: u'Schlachtkreuzer',
-                ROCKETLAUNCHER: u'Raketenwerfer',
-                LIGHTLASER: u'Leichtes Lasergeschütz',
-                HEAVYLASER: u'Schweres Lasergeschütz',
-                GAUSSCANNON: u'Gaußkanone',
-                IONCANNON: u'Ionengeschütz',
-                PLASMATURRET: u'Plasmawerfer',
-                SMALLSHIELDDOME: u'Kleine Schildkuppel',
-                LARGESHIELDDOME: u'Große Schildkuppel',
-                ANTIBALLISTICMISSILE: u'Abfangrakete',
-                INTERPLANETARYMISSILE: u'Interplanetarrakete',
-            }
-    elif lang == "se":
-        buildLabels = {
-                METALMINE  : u'Metallgruva',
-                CRYSTALMINE  : u'Kristallgruva',
-                DEUTERIUMSYNTHESIZER  : u'Deuteriumplattform',
-                SOLARPLANT  : u'Solkraftverk',
-                FUSIONREACTOR : u'Fusionskraftverk',
-                ROBOTICSFACTORY : u'Robotfabrik',
-                NANITEFACTORY : u'Nanofabrik',
-                SHIPYARD : u'Skeppsvarv',
-                METALSTORAGE : u'Metallager',
-                CRYSTALSTORAGE : u'Kristallager',
-                DEUTERIUMTANK : u'Deuteriumtank',
-                METALHIDING : u'Skärmad Metall Håla',
-                CRYSTALHIDING : u'Underjordisk Kristall håla',
-                DEUTERIUMHIDING : u'Havsbotten Deuterium Håla',
-                RESEARCHLAB : u'Forskningslabb',
-                TERRAFORMER : u'Terraformare',
-                ALLIANCEDEPOT : u'Alliansdepå',
-                MISSILESILO : u'Missilsilo',
-                # research
-                ESPIONAGETECHNOLOGY: u'Spionageteknologi',
-                COMPUTERTECHNOLOGY: u'Datorteknologi',
-                WEAPONSTECHNOLOGY: u'Vapenteknologi',
-                SHIELDINGTECHNOLOGY: u'Sköldteknologi',
-                ARMOURTECHNOLOGY: u'Pansarteknologi',
-                ENERGYTECHNOLOGY: u'Energiteknologi',
-                HYPERSPACETECHNOLOGY: u'Hyperrymdteknologi',
-                COMBUSTIONDRIVE: u'Raketmotor',
-                IMPULSEDRIVE: u'Impulsmotor',
-                HYPERSPACEDRIVE: u'Hyperrymdmotor',
-                LASERTECHNOLOGY: u'Laserteknologi',
-                IONTECHNOLOGY: u'Jonteknologi',
-                PLASMATECHNOLOGY: u'Plasmateknologi',
-                INTERGALACTICRESEARCHNETWORK: u'Intergalaktiskt forskningsnätverk',
-                ASTROPHYSICS: u'Astrofysik',
-                GRAVITONTECHNOLOGY: u'Gravitonteknologi',
-                # shipyard
-                SMALLCARGO: u'Litet transportskepp',
-                LARGECARGO: u'Stort transportskepp',
-                LIGHTFIGHTER: u'Litet jaktskepp',
-                HEAVYFIGHTER: u'Stort jaktskepp',
-                CRUISER: u'Kryssare',
-                BATTLESHIP: u'Slagskepp',
-                COLONYSHIP: u'Koloniskepp',
-                RECYCLER: u'Återvinnare',
-                ESPIONAGEPROBE: u'Spionsond',
-                BOMBER: u'Bombare',
-                SOLARSATELLITE: u'Solsatellit',
-                DESTROYER: u'Flaggskepp',
-                DEATHSTAR: u'Dödsstjärna',
-                BATTLECRUISER: u'Jagare',
-                ROCKETLAUNCHER: u'Raketramp',
-                LIGHTLASER: u'Litet lasertorn',
-                HEAVYLASER: u'Stort lasertorn',
-                GAUSSCANNON: u'Gausskanon',
-                IONCANNON: u'Jonkanon',
-                PLASMATURRET: u'Plasmakanon',
-                SMALLSHIELDDOME: u'Liten sköldkupol',
-                LARGESHIELDDOME: u'Stor sköldkupol',
-                ANTIBALLISTICMISSILE: u'Antiballistiska missiler',
-                INTERPLANETARYMISSILE: u'Interplanetära missiler',
-            }
-    buildLabelsName = dict(zip(buildLabels.values(),buildLabels.keys()))
 
+
+# on which page inside ogame, the buildings can be build
 pageToBid = {
     'resources': [METALMINE,CRYSTALMINE,DEUTERIUMSYNTHESIZER,SOLARPLANT,FUSIONREACTOR,METALSTORAGE,CRYSTALSTORAGE,DEUTERIUMTANK,METALHIDING,CRYSTALHIDING,DEUTERIUMHIDING,],
     'station': [ROBOTICSFACTORY,NANITEFACTORY,SHIPYARD,RESEARCHLAB,TERRAFORMER,ALLIANCEDEPOT,MISSILESILO,],
@@ -211,6 +148,7 @@ pageToBid = {
     'defense': [ ROCKETLAUNCHER, LIGHTLASER, HEAVYLASER, GAUSSCANNON, IONCANNON, PLASMATURRET, SMALLSHIELDDOME, LARGESHIELDDOME, ANTIBALLISTICMISSILE, INTERPLANETARYMISSILE,],
 }
 
+#                          metal,  crystal,  deuterium, increase per level
 costs = {
     METALMINE           : (40      , 10      , 0      , 1.5),
     CRYSTALMINE         : (30      , 15      , 0      , 1.6),
@@ -277,6 +215,7 @@ costs = {
     ANTIBALLISTICMISSILE: (8000    , 0       , 2000)    ,
     INTERPLANETARYMISSILE: (12500   , 2500    , 10000)   ,
 }
+
 def isBuilding(bId):
     return 0<bId<100
 def isResearch(bId):
@@ -285,7 +224,6 @@ def isFleet(bId):
     return 200<bId<300
 def isDeff(bId):
     return 400<bId<600
-
 
 def getCosts(bId, lvl):
     c = costs[bId]
@@ -308,30 +246,46 @@ def getCosts(bId, lvl):
                 'deuterium': c[2],
                 }
 
-def getStorage(bId, level):
+# buildings is a dict with key=bId and value=level
+def getStorage(buildings):
     res = {"metal":0, "crystal":0, "deuterium":0, "energy":0}
-    if bId == METALSTORAGE:
-        res["metal"] = int(floor(2.5 * pow(e, 20 * level / 33.0)) * 5000)
-    elif bId == CRYSTALSTORAGE:
-        res["crystal"] = int(floor(2.5 * pow(e, 20 * level / 33.0)) * 5000)
-    elif bId == DEUTERIUMTANK:
-        res["deuterium"] = int(floor(2.5 * pow(e, 20 * level / 33.0)) * 5000)
+    for bId in (METALSTORAGE, CRYSTALSTORAGE, DEUTERIUMTANK):
+        try:
+            level = buildings[bId]
+            if bId == METALSTORAGE:
+                res["metal"] = int(floor(2.5 * pow(e, 20 * level / 33.0)) * 5000)
+            elif bId == CRYSTALSTORAGE:
+                res["crystal"] = int(floor(2.5 * pow(e, 20 * level / 33.0)) * 5000)
+            elif bId == DEUTERIUMTANK:
+                res["deuterium"] = int(floor(2.5 * pow(e, 20 * level / 33.0)) * 5000)
+        except:
+            pass
     return res
 
-def getHiding(bId, level, mtemp=50):
+# buildings is a dict with key=bId and value=level
+def getHiding(buildings, mtemp=50):
     res = {"metal":0, "crystal":0, "deuterium":0, "energy":0}
-    if bId == METALHIDING:
-        res["metal"] = int(floor(600 * level * pow(1.1, level)))
-    elif bId == CRYSTALHIDING:
-        res["crystal"] = int(floor(600 * level * pow(1.1, level)))
-    elif bId == DEUTERIUMHIDING:
-        res["deuterium"] = int(floor(400 * level * pow(1.1, level * (1.44-0.004*mtemp))))
+    for bId in (METALHIDING, CRYSTALHIDING, DEUTERIUMHIDING):
+        try:
+            level = buildings[bId]
+            if bId == METALHIDING:
+                res["metal"] += int(floor(600 * level * pow(1.1, level)))
+            elif bId == CRYSTALHIDING:
+                res["crystal"] += int(floor(600 * level * pow(1.1, level)))
+            elif bId == DEUTERIUMHIDING:
+                res["deuterium"] += int(floor(400 * level * pow(1.1, level * (1.44-0.004*mtemp))))
+        except:
+            pass
     return res
 
 def addRes(res1, res2):
     return {k:(res1[k] + res2[k]) for k in res1}
 def subRes(res1, res2):
     return {k:(res1[k] - res2[k]) for k in res1}
+def mulRes(res1, res2=None, mul=None):
+    if res2 is None:
+        res2 = {"metal":mul, "crystal":mul, "deuterium":mul, "energy":mul}
+    return {k:(int(res1[k] * res2[k])) for k in res1}
 
 
 
@@ -343,28 +297,59 @@ def to_mse(metal=0, crystal=0, deuterium=0, energy=0, mse=None):
     e = energy * 0 # TODO can we add energy to this formula?
     return round(m+k+d+e)
 
-def production(bId, level, research=None, mtemp=50):
+def production(bIdOrBuildings, level=None, research=None, mtemp=50):
     if research is None: research = {PLASMATECHNOLOGY:0, ENERGYTECHNOLOGY:0}
     res = {"metal":0, "crystal":0, "deuterium":0, "energy":0}
-    if bId == METALMINE:
-        plasma_metbonus= 0.01 # 1% per level
-        res["metal"] = int(floor(30*level*pow(1.1,level) * (1+plasma_metbonus*research[122])) + 30)
-        res["energy"] = int(ceil(10*level*pow(1.1,level)) * -1)
-    elif bId == CRYSTALMINE:
-        plasma_krisbonus= 0.0066 # 0.66% per level
-        res["crystal"] = int(floor( (20*level*pow(1.1,level)) * (1+plasma_krisbonus*research[122]) ) + 15)
-        res["energy"] = int(ceil(10*level*pow(1.1,level)) * -1)
-    elif bId == DEUTERIUMSYNTHESIZER:
-        res["deuterium"] = int(floor(10*level*pow(1.1,level)*(1.44-0.004*mtemp)))
-        res["energy"] = int(ceil(20*level*pow(1.1,level)) * -1)
-    elif bId == SOLARPLANT:
-        res["energy"] = int(floor(20*level*pow(1.1,level)))
-    elif bId == FUSIONREACTOR:
-        res["energy"] = int(floor(30*level*pow(1.05+research[ENERGYTECHNOLOGY]*0.01,level)))
-        res["deuterium"] = int(ceil(10*level*pow(1.1,level)) * -1)
-    elif bId == SOLARSATELLITE:
-        res["energy"] = int(floor((mtemp+140) / 6) * level)
+    if level is None:
+        buildings = bIdOrBuildings
+    else:
+        buildings = {bIdOrBuildings: level}
+    for bId in (METALMINE, CRYSTALMINE, DEUTERIUMSYNTHESIZER, SOLARPLANT, FUSIONREACTOR, SOLARSATELLITE):
+        try:
+            level = buildings[bId]
+        except:
+            continue
+        if bId == METALMINE:
+            plasma_metbonus= 0.01 # 1% per level
+            res["metal"] += int(floor(30*level*pow(1.1,level) * (1+plasma_metbonus*research[122])) + 30)
+            res["energy"] += int(ceil(10*level*pow(1.1,level)) * -1)
+        elif bId == CRYSTALMINE:
+            plasma_krisbonus= 0.0066 # 0.66% per level
+            res["crystal"] += int(floor( (20*level*pow(1.1,level)) * (1+plasma_krisbonus*research[122]) ) + 15)
+            res["energy"] += int(ceil(10*level*pow(1.1,level)) * -1)
+        elif bId == DEUTERIUMSYNTHESIZER:
+            res["deuterium"] += int(floor(10*level*pow(1.1,level)*(1.44-0.004*mtemp)))
+            res["energy"] += int(ceil(20*level*pow(1.1,level)) * -1)
+        elif bId == SOLARPLANT:
+            res["energy"] += int(floor(20*level*pow(1.1,level)))
+        elif bId == FUSIONREACTOR:
+            res["energy"] += int(floor(30*level*pow(1.05+research[ENERGYTECHNOLOGY]*0.01,level)))
+            res["deuterium"] += int(ceil(10*level*pow(1.1,level)) * -1)
+        elif bId == SOLARSATELLITE:
+            res["energy"] += int(floor((mtemp+140) / 6) * level)
     return res
+
+def overallProduction(buildings, research, mtemp):
+    # first calculate positive energy
+    energyBuildings = {SOLARPLANT:0, FUSIONREACTOR:0, SOLARSATELLITE:0}
+    for bId in energyBuildings:
+        energyBuildings[bId] = buildings[bId]
+    energyRes = production(energyBuildings, research=research, mtemp=mtemp)
+    # then calculate negative energy:
+    prodBuildings = {METALMINE:0, CRYSTALMINE:0, DEUTERIUMSYNTHESIZER:0}
+    for bId in prodBuildings:
+        prodBuildings[bId] = buildings[bId]
+    prodRes = production(prodBuildings, research=research, mtemp=mtemp)
+    # then look if energy consumption is lower than production
+    if prodRes["energy"] + energyRes["energy"] < 0:
+        # look how many percent of energy is missing
+        factor = energyRes["energy"] / float(abs(prodRes["energy"]))
+        oldEnergy = prodRes["energy"]
+        prodRes = mulRes(prodRes, mul=factor)
+        prodRes["energy"] = oldEnergy
+    return addRes(prodRes, energyRes)
+
+
 
 def gain(bId, level, research=None, mtemp=50):
     if research is None: research = {PLASMATECHNOLOGY:0, ENERGYTECHNOLOGY:0}
@@ -465,11 +450,6 @@ def duration(speed, distance, speedFactor=1, speedUni=1):
         return 999999999
     return round(3500 / speedFactor * (distance * 10 / speed)**0.5 + 10)
 
-# when given a sysamount it will return the amount of
-# galaxies, which have lower or equal flight duration
-def sysDurationEqualsGalaxy(sys):
-    return (sys*95+2700)/20000
-
 # convenience funtion for duration calculation in one go
 def easyDuration(coord1, coord2, shipId, research, speedFactor=1, speedUni=1):
     dist = distance(coord1, coord2)
@@ -556,6 +536,8 @@ def getFilledCargo(resources, availableCargo):
 
 
 if __name__ == "__main__":
+    assert(production(METALMINE, 23, research={PLASMATECHNOLOGY:6})["metal"] == 6579)
+    assert(production(CRYSTALMINE, 20, research={PLASMATECHNOLOGY:6})["crystal"] == 2812)
     assert(production(METALMINE, 20)["metal"] == 4066)
     assert(production(CRYSTALMINE, 18)["crystal"] == 2016)
     assert(production(DEUTERIUMSYNTHESIZER, 15, mtemp=48)["deuterium"] == 781)
@@ -611,8 +593,19 @@ if __name__ == "__main__":
     assert(getFilledCargo({"metal":300000,"crystal":250000,"deuterium":50000}, 600000) ==
             (25000, {'crystal': 250000, 'energy': 0, 'metal': 275000, 'deuterium': 50000}))
 
-    assert(floor(sysDurationEqualsGalaxy(3)) == 0)
-    assert(floor(sysDurationEqualsGalaxy(182)) == 0)
-    assert(floor(sysDurationEqualsGalaxy(183)) == 1)
-    assert(floor(sysDurationEqualsGalaxy(364)) == 1)
-    assert(floor(sysDurationEqualsGalaxy(398)) == 2)
+    buildings = {
+            METALMINE: 23,
+            CRYSTALMINE: 20,
+            DEUTERIUMSYNTHESIZER: 17,
+            SOLARPLANT: 24,
+            FUSIONREACTOR:4,
+            SOLARSATELLITE: 5,
+        }
+    research = {
+            ENERGYTECHNOLOGY: 8,
+            PLASMATECHNOLOGY: 6,
+            }
+
+    assert(overallProduction(buildings, research, 48) == {'crystal': 2785, 'energy': -48, 'metal': 6517, 'deuterium': 1002})
+    buildings[FUSIONREACTOR] = 0
+    assert(overallProduction(buildings, research, 48) == {'crystal': 2678, 'energy': -243, 'metal': 6267, 'deuterium': 1021})

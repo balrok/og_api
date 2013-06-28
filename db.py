@@ -245,7 +245,7 @@ def highscoreChange(server, player, hours=24):
 def listInactivityPlayer(position, radius=15, duration=60*60*24, minScore=5000, maxScore=9999999, amount=50, maxDefPerPlanet=9999999):
     import math
     from prettytable import PrettyTable
-    from Constants import sysDurationEqualsGalaxy
+    from src.Constants import sysDurationEqualsGalaxy
     galaxy = int(position.split(":")[0])
     system = int(position.split(":")[1])
     minSys = system-radius
